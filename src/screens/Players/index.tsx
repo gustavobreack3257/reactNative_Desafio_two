@@ -10,16 +10,20 @@ import { ListEmpty } from '@components/ListEmpty'
 import { FlatList } from 'react-native'
 import { ButtonIcons } from '@components/ButtonIcons/Index'
 import { useState } from 'react'
+import { useRoute } from '@react-navigation/native'
 
 
 export function Players(){
     const [team, setTeam] = useState("Time A");
     const [players, setPlayers] = useState([])
+
+    const route = useRoute();
+    const {group} = route.params;
     return(
         <Container>
             <Header showBackButton/>
 
-            <HighLith title='Nome da turma'
+            <HighLith title={group}
             subtitle='Adicione a galera'/>
             <Form>
                 <Input
