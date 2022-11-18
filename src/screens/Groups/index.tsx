@@ -9,9 +9,11 @@ import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 import { Container} from './styles';
 import { groupsGetAll } from '@storage/group/groupsGetAll';
+import { Loading } from '@components/loading';
 
 
 export function Groups() {
+  const [isLoading, setIsLoading] = useState(true);
   const [group, setGroup] = useState<string[]>([])
   const navigation = useNavigation()
 
@@ -19,13 +21,18 @@ export function Groups() {
     navigation.navigate('new')
   }
 
-  async function fechGroup() {
+  async function fetchGroup() {
     try{
+      setIsLoading(true)
+
       const data = await groupsGetAll();
       setGroup(data)
+
     }
     catch(error){
       console.log(error)
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -36,7 +43,7 @@ export function Groups() {
   useFocusEffect(
     useCallback(() => {
     console.log("useEffect executou")
-    fechGroup()
+    fetchGroup()
   },[]));
 
   return (
@@ -45,6 +52,8 @@ export function Groups() {
         <Header/>
 
         <HighLith title='Turmas' subtitle='jogue com a sua turma'/>
+    {
+      isLoading ? <Loading/> :
 
         <FlatList
         data={group}
@@ -58,9 +67,12 @@ export function Groups() {
         contentContainerStyle={group.length === 0 && ({flex: 1})}
         ListEmptyComponent={() => (
           <ListEmpty
-          message='que tal cadastrar um novo grupo?'/>
-          )}
-        />
+          message='que tal cadastrar um novo grupo?'
+          />
+      )}
+      showsVerticalScrollIndicator={false}
+      />
+}
         <Button title='Criar nova turma'
         onPress={HandleNewGroups}
         />
