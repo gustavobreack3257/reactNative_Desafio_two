@@ -8,6 +8,7 @@ export default {
       RED: '#F75A68',
       RED_DARK: '#AA2834',
 
+      GRAY_50: '#333638',
       GRAY_700: '#121214',
       GRAY_600: '#202024',
       GRAY_500: '#29292E',
@@ -24,6 +25,7 @@ export default {
       SM: 14,
       MD: 16,
       LG: 18,
-      XL: 24
+      XL: 24,
+      EG: 32,
     }
   };

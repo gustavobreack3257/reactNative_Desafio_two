@@ -1,34 +1,47 @@
 import styled, { css } from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ArrowLeft } from "phosphor-react-native";
 export const Container = styled(SafeAreaView)`
-    flex: 1;
-    background-color: ${({theme}) => theme.COLORS.GRAY_400};
 
-    padding: 24px;
+    background-color: #E5F0DB;
+
 `;
+export const BackButton = styled.TouchableOpacity`
+    height: 24px;
+    width: 24px;
+    margin-top: 56px;
+    position: absolute;
+    margin-left: 24px;
 
-export const Form = styled.View`
-    width: 100%;
-    background-color: ${({theme}) => theme.COLORS.GRAY_700};
-
-    flex-direction: row;
-    justify-content: center;
-    border-radius: 6px
 `;
+export const BackIcon = styled(ArrowLeft).attrs(({theme}) =>({
+    size: 32,
+    color: theme.COLORS.GRAY_700
+}))``;
+export const Content = styled.View`
 
-export const HeaderList = styled.View`
-    width: 100%;
+    height: 708px;
+    width: 392px;
+    margin-top: 104px;
+    border-top-left-radius:20px;
+    border-top-right-radius:18px;
+    background-color: ${({theme}) => theme.COLORS.WHITE};
 
-    flex-direction: row;
+`;
+export const ViewPrime = styled.View`
+    margin-top: 57px;
+    margin-left: 160px;
+    position: absolute;
+
+
+
+`;
+export const Title = styled.Text`
     align-items: center;
+    text-align: center;
+${({theme}) => css`
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.LG};
 
-    margin: 32px 0 12px;
-`;
-
-export const NumberOfPlayers = styled.Text`
-    ${({theme}) =>  css`
-        color: ${theme.COLORS.GRAY_200};
-        font-family: ${theme.FONT_FAMILY.BOLD}
-        font-size: ${theme.FONT_SIZE.SM}
-    `}
+`};
 `;

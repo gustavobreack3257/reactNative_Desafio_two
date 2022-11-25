@@ -1,20 +1,49 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { UsersThree } from "phosphor-react-native";
+import { CaretLeft, ArrowLeft} from "phosphor-react-native";
 export const Container = styled(SafeAreaView)`
-    flex:1;
-    background-color: ${({theme}) => theme.COLORS.GRAY_600};
-    padding: 24px;
-`;
 
+    background-color: #DDDEDF;
+
+`;
+export const BackButton = styled.TouchableOpacity`
+    height: 24px;
+    width: 24px;
+    margin-top: 56px;
+    position: absolute;
+    margin-left: 24px;
+
+`;
+export const BackIcon = styled(ArrowLeft).attrs(({theme}) =>({
+    size: 32,
+    color: theme.COLORS.GRAY_700
+}))``;
 export const Content = styled.View`
-    flex: 1;
-    justify-content: center;
+
+    height: 708px;
+    width: 392px;
+    margin-top: 104px;
+    border-top-left-radius:20px;
+    border-top-right-radius:18px;
+    background-color: ${({theme}) => theme.COLORS.WHITE};
+
+`;
+export const ViewPrime = styled.View`
+    margin-top: 57px;
+    margin-left: 150px;
+    position: absolute;
+
+
+`;
+export const Title = styled.Text`
+    align-items: center;
+    text-align: center;
+${({theme}) => css`
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    font-size: ${theme.FONT_SIZE.LG};
+
+`};
 `;
 
-export const Icon = styled(UsersThree).attrs(({theme}) => ({
-    size: 56,
-    color: theme.COLORS.GREEN_700
-}))`
-    align-self: center;
-`
+
+

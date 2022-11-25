@@ -5,13 +5,18 @@ export const Container = styled.View`
 width: 100%;
 flex-direction: row;
 align-items: center;
-justify-content: center;
+justify-content: flex-start;
+margin-bottom: 10%;
 `;
 
 export const Logo = styled.Image`
-width: 46px;
-height: 55px;`;
+width: 82px;
+height: 37px;`;
 
+export const Perfil = styled.Image`
+height:40px;
+width:40px;
+margin-Left: 60%`;
 export const BackButton = styled.TouchableOpacity`
     flex: 1;
 `;

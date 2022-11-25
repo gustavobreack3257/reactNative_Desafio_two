@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { FlatList } from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/native'
 
@@ -51,7 +51,15 @@ export function Groups() {
       <Container>
         <Header/>
 
-        <HighLith title='Turmas' subtitle='jogue com a sua turma'/>
+
+        <HighLith title='Turmas' subtitle='das refeições dentro da dieta.'/>
+        <ListEmpty
+          message='Refeições'
+          />
+        <Button title=' + Nova Refeição'
+        onPress={HandleNewGroups}
+        />
+        <ListEmpty message='12.08.2020'/>
     {
       isLoading ? <Loading/> :
 
@@ -64,18 +72,10 @@ export function Groups() {
           onPress={() => handleOpenGroup(item)}
           />
         )}
-        contentContainerStyle={group.length === 0 && ({flex: 1})}
-        ListEmptyComponent={() => (
-          <ListEmpty
-          message='que tal cadastrar um novo grupo?'
-          />
-      )}
+
       showsVerticalScrollIndicator={false}
       />
 }
-        <Button title='Criar nova turma'
-        onPress={HandleNewGroups}
-        />
       </Container>
 
   );

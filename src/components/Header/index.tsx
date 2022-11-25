@@ -1,5 +1,6 @@
-import { Container, Logo, BackButton, BackIcon} from "./styles";
+import { Container, Logo, BackButton, BackIcon, Perfil} from "./styles";
 import LogoImage from '@assets/Logo.png'
+import LogoPerfil from '@assets/Ellipse.png'
 import { useNavigation } from "@react-navigation/native";
 
 type props ={
@@ -18,8 +19,10 @@ export function Header({ showBackButton = false} : props){
             <BackButton onPress={HandleGoBack}>
                 <BackIcon/>
             </BackButton>
-}
+        }
             <Logo source={LogoImage}/>
+            <Perfil source={LogoPerfil}/>
+
         </Container>
     )
 }

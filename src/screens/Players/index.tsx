@@ -1,12 +1,5 @@
-import { Header } from '@components/Header'
-import { Filter } from '@components/Filter'
-import { Input } from '@components/Input'
-import { HighLith } from '@components/HighLight'
-import { PlayerCard } from '@components/PlayerCard'
-import { Button } from '@components/Button'
-import {Loading} from '@components/loading'
 
-import {Container, Form, HeaderList, NumberOfPlayers} from './styles'
+import {Container, BackButton, BackIcon, Content, Title, ViewPrime} from './styles'
 import { ListEmpty } from '@components/ListEmpty'
 import { Alert, FlatList, TextInput } from 'react-native'
 import { ButtonIcons } from '@components/ButtonIcons/Index'
@@ -18,6 +11,7 @@ import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupAndTe
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO'
 import { playerRemoveByGroup } from '@storage/player/playerRemoveByGroup'
 import { groupRemoveByName } from '@storage/group/groupRemoveByName'
+import { groupsGetAll } from '@storage/group/groupsGetAll'
 
 type RouteParams ={
     group: string
@@ -107,77 +101,24 @@ export function Players(){
         )
     }
 
+    function handleGoBack(){
+        navigation.navigate('groups')
+    }
+
     useEffect(() => {
         fetchPlayersByTeam();
     }, [team])
 
     return(
         <Container>
-            <Header showBackButton/>
-
-            <HighLith title={group}
-            subtitle='Adicione a galera'/>
-            <Form>
-                <Input
-                    inputRef={newPlayerNameInputRef}
-                    onChangeText={setNewPlayerName}
-                    value={newPlayerName}
-                    placeholder='Nome da pessoa'
-                    autoCorrect={false}
-                    onSubmitEditing={handleAddPlayer}
-                    returnKeyType='done'
-                />
-
-            <ButtonIcons
-            icon='add'
-            onPress={handleAddPlayer}
-            />
-            </Form>
-            <HeaderList>
-            <FlatList
-            data={["Time A", "Time B"]}
-            keyExtractor={item => item}
-            renderItem={({item}) =>(
-                <Filter
-                title={item}
-                isActive={item === team}
-                onPress={() => setTeam(item)}
-            />
-            )}
-            horizontal
-            />
-            <NumberOfPlayers>
-                {players.length}
-            </NumberOfPlayers>
-            </HeaderList>
-
-            {
-                isLoading ? <Loading /> :
-
-            <FlatList
-            data={players}
-            keyExtractor={ item => item.name}
-            renderItem={({item}) => (
-                <PlayerCard
-                name={item.name}
-                onRemove={() => handlePlayerRemove(item.name)}/>
-            )}
-            ListEmptyComponent={() => (
-                <ListEmpty
-                message='Não há pessoas nesse time.'/>
-                )}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={[
-                    {paddingBottom: 100},
-                    players.length === 0 && {flex: 1}
-                ]}
-            />
-}
-
-            <Button
-                title="Remover turma"
-                type="SECONDARY"
-                onPress={handleGroupRemove}/>
+             <BackButton onPress={handleGoBack}>
+                <BackIcon />
+            </BackButton>
+            <ViewPrime>
+                <Title>Refeição</Title>
+            </ViewPrime>
+            <Content></Content>
         </Container>
     )
+
 }
